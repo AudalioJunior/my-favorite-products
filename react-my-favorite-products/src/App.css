@@ -1,0 +1,353 @@
+:root {
+  --primary-color: #098ac9;
+  --primary-light: #6fc3df;
+  --text-color: #333;
+  --muted-text: #666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--primary-color);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><rect x="0" y="0" width="40" height="40" fill="white"/><rect x="60" y="60" width="40" height="40" fill="white"/></svg>');
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  background-position: center center;
+}
+
+/* Botões padrão */
+.btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn.danger {
+  background-color: #e74c3c;
+}
+
+.btn.danger:hover {
+  background-color: #c0392b;
+}
+
+/* Botão “Habilitar Lista” com relevo e ícone */
+.btn.enable-list {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 2px solid var(--primary-color);
+  background-color: white;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  /* removemos o box-shadow para tirar o relevo inferior */
+}
+
+
+.btn.enable-list:hover {
+  background-color: #f0faff;
+  transform: translateY(-1px);
+}
+
+.btn.enable-list:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--primary-light);
+}
+
+.btn.enable-list .icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
+/* Login / Register Form */
+.form-container {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(15, 40, 70, 0.1);
+  width: 360px;
+  position: relative;
+}
+.form-container .logo {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.form-container h2 {
+  color: var(--text-color);
+  margin: 0 0 0.25rem;
+}
+.form-container .subtitle {
+  color: var(--muted-text);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.form-container label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+.form-container input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ddebf7;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+}
+.form-container input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+.form-container button {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+.form-container button:hover {
+  background: var(--primary-light);
+}
+.form-container .bottom-text {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+.form-container .bottom-text a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.form-container .bottom-text a:hover {
+  text-decoration: underline;
+}
+
+/* Dashboard Tabs — Pill com ícones e animação */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.dashboard-container .tabs {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  overflow: hidden;
+  margin: 0 auto 2rem;
+}
+.dashboard-container .tabs button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dashboard-container .tabs button:first-child {
+  border-radius: 24px 0 0 24px;
+}
+.dashboard-container .tabs button:last-child {
+  border-radius: 0 24px 24px 0;
+}
+.dashboard-container .tabs button:hover:not(.active) {
+  background: rgba(255,255,255,0.3);
+}
+.dashboard-container .tabs button.active {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.1);
+}
+.dashboard-container .tabs .tab-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Produtos */
+.products-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 100%;
+  height: 60vh;
+  min-height: 60vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(15, 40, 70, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(15, 40, 70, 0.15);
+}
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+}
+.product-card h3 {
+  font-size: 1rem;
+  color: var(--text-color);
+  text-align: center;
+  flex-grow: 1;
+}
+.product-card .price {
+  font-weight: bold;
+  color: var(--primary-color);
+  margin: 0.5rem 0;
+}
+.favorite-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  color: var(--primary-light);
+}
+.favorite-btn.favorited {
+  color: red;
+}
+.favorite-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Banner e Info */
+.enable-banner {
+  background: rgba(255,255,255,0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.enable-banner .btn {
+  margin-top: 0.5rem;
+}
+.list-info {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.modal-content h2 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+.modal-content label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  font-weight: 500;
+}
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.modal-buttons .btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.modal-buttons .btn.primary {
+  background: var(--primary-color);
+  color: white;
+}
+.modal-buttons .btn:not(.primary) {
+  background: #eee;
+  color: #333;
+}

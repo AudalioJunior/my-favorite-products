@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { FavoriteListModule } from './favorite_list/favorite_list.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserModule } from './user/user.module';
       synchronize: false, 
     }),
     UserModule,
+    FavoriteListModule,
     AppModule
   ],
 })
