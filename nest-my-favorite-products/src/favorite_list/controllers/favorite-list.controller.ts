@@ -34,11 +34,13 @@ export class FavoriteListController extends BaseController {
     return this.baseResponse({ statusCode, message, data });
   }
 
-  @Get()
-  async findAll() {
+  @Get('user/:userId')
+  async findByUserId(
+    @Param('userId') userId: number
+  ) {
     const statusCode = HttpStatus.OK;
-    const message = 'Listas de favoritos recuperadas com sucesso!';
-    const data = await this.favoriteListService.findAll();
+    const message = 'Lista de favoritos recuperada por usuário!';
+    const data = await this.favoriteListService.findByUserId(userId);
 
     return this.baseResponse({ statusCode, message, data });
   }

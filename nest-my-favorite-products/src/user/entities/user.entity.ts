@@ -1,8 +1,9 @@
-import { BaseEntity, Column, Entity, PrimaryColumn } from "typeorm";
+import { FavoriteList } from "src/favorite_list/entities/favorite_list.entity";
+import { BaseEntity, Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('user')
 export class User extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -13,4 +14,7 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @OneToOne(() => FavoriteList, (list) => list.user, { cascade: true })
+  favoriteList: FavoriteList;
 }

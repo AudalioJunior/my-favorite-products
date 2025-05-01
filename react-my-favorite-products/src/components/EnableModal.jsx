@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
+import favoritesService from '../services/favoritesService';
 
 export default function EnableModal({ onClose, onEnable }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleEnable = () => {
-    if (!title.trim()) return;
-    onEnable({ title: title.trim(), description: description.trim() });
-    onClose();
+  const handleConfirm = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user')).data;
+
+      const userId = user.id;
+
+      const result = await favoritesService.createFavoriteList({ title, description, userId });
+      onEnable({ title: result.title, description: result.description });
+    } catch (error) {
+      const backendMessage = error?.response?.data?.message;
+      const message = Array.isArray(backendMessage)
+        ? backendMessage.join('\n')
+        : backendMessage || 'Erro ao criar lista. Tente novamente.';
+      alert(message);
+    }
   };
 
   return (
@@ -29,7 +41,7 @@ export default function EnableModal({ onClose, onEnable }) {
         />
         <div className="modal-buttons">
           <button className="btn" onClick={onClose}>Cancelar</button>
-          <button className="btn primary" onClick={handleEnable}>Habilitar</button>
+          <button className="btn primary" onClick={handleConfirm}>Habilitar</button>
         </div>
       </div>
     </div>

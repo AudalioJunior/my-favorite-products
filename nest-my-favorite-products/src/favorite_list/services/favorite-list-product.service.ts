@@ -1,4 +1,4 @@
-import { BadRequestException, ConflictException, Injectable, Logger } from '@nestjs/common';
+import { BadRequestException, ConflictException, Inject, Injectable, Logger } from '@nestjs/common';
 import { FavoriteListProducts } from '../entities/favorite_list_product.entity';
 import { CreateFavoriteListProductDto } from '../dtos/create-product-favorite-list';
 import { FavoriteListProductRepository } from '../repository/favorite-list-product.repository';
@@ -9,7 +9,8 @@ export class FavoriteListProductService {
   private readonly logger: Logger = new Logger(FavoriteListProductService.name);
 
   constructor(
-    private readonly favoriteListProductRepository: FavoriteListProductRepository
+    @Inject('FavoriteListProductRepository')
+    private readonly favoriteListProductRepository: FavoriteListProductRepository,
   ) {}
 
   async addProductToList(

@@ -1,9 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+// favorite-list.repository.ts
+import { DataSource, Repository } from 'typeorm';
 import { FavoriteList } from '../entities/favorite_list.entity';
+import { User } from 'src/user/entities/user.entity';
 
-@Injectable()
+
 export class FavoriteListRepository extends Repository<FavoriteList> {
+    constructor(private dataSource: DataSource) {
+      super(User, dataSource.createEntityManager());
+    }
+    
   async findByIdWithProducts(id: number): Promise<FavoriteList | null> {
     return this.findOne({
       where: { id },

@@ -50,7 +50,6 @@ body {
   background-color: #c0392b;
 }
 
-/* Botão “Habilitar Lista” com relevo e ícone */
 .btn.enable-list {
   display: inline-flex;
   align-items: center;
@@ -64,7 +63,6 @@ body {
   color: var(--primary-color);
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.2s ease;
-  /* removemos o box-shadow para tirar o relevo inferior */
 }
 
 
@@ -164,7 +162,6 @@ body {
   text-decoration: underline;
 }
 
-/* Dashboard Tabs — Pill com ícones e animação */
 .dashboard-container {
   display: flex;
   flex-direction: column;

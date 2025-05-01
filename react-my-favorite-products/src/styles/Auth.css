@@ -5,23 +5,19 @@
   align-items: center;
   justify-content: center;
 
-  /* gradiente principal */
   background: linear-gradient(135deg, #098ac9 0%, #3fb1f7 100%);
 
-  /* padrão de caixas como marca d’água */
   background-image: url('data:image/svg+xml;utf8,\
     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" opacity="0.05">\
       <path d="M50 10 L90 10 L90 50 L50 50 Z M110 110 L150 110 L150 150 L110 150 Z" fill="white" />\
     </svg>');
   background-repeat: repeat;
-  /* controlamos o tamanho e centralização da grid */
   background-size: 150px 150px;
   background-position: center center;
 }
 
 .tabs {
   position: relative;
-  /* força as abas no mesmo width do form */
   width: 360px;
   display: flex;
   margin: 0 auto 1.5rem;
@@ -47,11 +43,10 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 50%;            /* metade da largura das abas */
+  width: 50%;
   height: 3px;
   background: white;
   border-radius: 2px;
-  /* animação mais suave sem mexer em left diretamente */
   transition: transform 0.3s ease-out;
   will-change: transform;
 }

@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { FavoriteListProducts } from "../entities/favorite_list_product.entity";
 import { Repository } from "typeorm";
 
-@Injectable()
 export class FavoriteListProductRepository extends Repository<FavoriteListProducts> {
   async findProductInList(listId: number, productId: number): Promise<FavoriteListProducts | null> {
     return this.createQueryBuilder('product')

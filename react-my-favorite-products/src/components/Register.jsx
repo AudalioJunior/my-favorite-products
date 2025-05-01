@@ -1,28 +1,32 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); 
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const handleRegister = async (e) => {
+    e.preventDefault(); 
+  
     try {
       await authService.register({ name, email, password });
-      // navegar após cadastro
+      alert('Cadastro realizado com sucesso!');
+      navigate('/login'); 
     } catch (err) {
-      console.error(err);
+      alert('Erro no cadastro: ' + err.message);
     }
   };
+  
 
   return (
     <div className="form-container">
       <div className="logo">FavoList</div>
       <h2>Cadastro</h2>
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegister}>
         <label>Nome</label>
         <input
           type="text"
@@ -50,7 +54,7 @@ export default function Register() {
           required
         />
 
-        <button type="submit">Cadastrar</button>
+        <button>Cadastrar</button>
       </form>
 
       <p className="bottom-text">

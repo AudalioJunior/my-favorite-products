@@ -24,6 +24,22 @@ export default function Dashboard() {
     load();
   }, []);
 
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user')).data;
+    if (user?.id) {
+      favoritesService
+        .getListByUserId(user.id)
+        .then(data => {
+          setListInfo({ title: data.title, description: data.description });
+          setEnabled(true);
+        })
+        .catch(() => {
+          setEnabled(false); 
+        });
+    }
+  }, []);
+
   const handleToggle = async id => {
     if (!enabled) return;
     try {
@@ -54,7 +70,6 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      {/* Botões no topo */}
       <div
         className="enable-banner"
         style={{ justifyContent: 'flex-end', display: 'flex', gap: '0.5rem' }}
@@ -75,7 +90,6 @@ export default function Dashboard() {
         )}
       </div>
 
-      {/* Tabs */}
       <div className="tabs">
         <button
           className={tab === 'products' ? 'active' : ''}
@@ -91,10 +105,7 @@ export default function Dashboard() {
           <span className="tab-icon">❤️</span> Favoritos
         </button>
       </div>
-
-      {/* Conteúdo */}
       <div className="products-wrapper">
-        {/* Info da lista visível apenas na aba de favoritos */}
         {enabled && tab === 'favorites' && (
           <div className="list-info" style={{ marginBottom: '1rem' }}>
             <h3>{listInfo.title}</h3>
@@ -118,7 +129,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Modal de habilitação */}
       {showModal && (
         <EnableModal
           onClose={() => setShowModal(false)}

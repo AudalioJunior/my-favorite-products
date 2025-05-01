@@ -5,7 +5,6 @@ import Register from './Register';
 import '../styles/Auth.css';
 
 export default function Auth() {
-  // <-- aqui
   const [mode, setMode] = useState('login');
 
   return (

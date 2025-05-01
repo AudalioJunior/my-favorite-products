@@ -13,7 +13,6 @@ export class CreateFavoriteListDto {
   @IsString()
   description: string;
 
-  @ValidateNested({ each: true })
-  @Type(() => FavoriteListProductDto)
-  products?: FavoriteListProductDto[];
+  @IsNumber()
+  userId: number;
 }

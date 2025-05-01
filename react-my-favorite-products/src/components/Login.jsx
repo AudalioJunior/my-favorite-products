@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); 
 
-  const handleSubmit = async e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await authService.login({ email, password });
-      // navegar após login
+      alert('Login realizado com sucesso!');
+      navigate('/dashboard');
     } catch (err) {
-      console.error(err);
+      const msg =
+        err.response?.data?.message || err.message || 'Erro inesperado no login.';
+      alert(msg); 
     }
   };
 
@@ -21,7 +25,7 @@ export default function Login() {
       <div className="logo">FavoList</div>
       <h2>Login</h2>
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <label>E-mail</label>
         <input
           type="email"
