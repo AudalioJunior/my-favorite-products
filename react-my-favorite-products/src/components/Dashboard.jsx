@@ -10,7 +10,7 @@ export default function Dashboard() {
   const [favIds, setFavIds] = useState([]);
   const [enabled, setEnabled] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [listInfo, setListInfo] = useState({ title: '', description: '' });
+  const [listInfo, setListInfo] = useState({id: '', title: '', description: '' });
 
   useEffect(() => {
     async function load() {
@@ -31,7 +31,7 @@ export default function Dashboard() {
       favoritesService
         .getListByUserId(user.id)
         .then(data => {
-          setListInfo({ title: data.title, description: data.description });
+          setListInfo({id: data.id, title: data.title, description: data.description });
           setEnabled(true);
         })
         .catch(() => {
@@ -52,16 +52,37 @@ export default function Dashboard() {
     }
   };
 
-  const handleDeleteList = () => {
-    setEnabled(false);
-    setFavIds([]);
-    setListInfo({ title: '', description: '' });
-    setTab('products');
-  };
 
   const handleEditList = () => {
     setShowModal(true);
   };
+  
+  const handleUpdateList = async (updatedInfo) => {
+    try {
+      const updated = await favoritesService.updateList(listInfo.id, updatedInfo);
+      setListInfo(updated);
+      setShowModal(false);
+      alert('Lista atualizada com sucesso!');
+    } catch (err) {
+      alert('Erro ao atualizar lista: ' + err.message);
+    }
+  };
+
+  const handleDeleteList = async () => {
+    try {
+      await favoritesService.deleteList(listInfo.id);
+      setEnabled(false);
+      setListInfo({ title: '', description: '', id: null });
+      setFavIds([]);
+      setTab('products');
+      alert('Lista removida com sucesso!');
+    } catch (err) {
+      alert('Erro ao remover lista: ' + err.message);
+    }
+  };
+  
+  
+
 
   const displayedList =
     tab === 'products'
@@ -132,7 +153,7 @@ export default function Dashboard() {
       {showModal && (
         <EnableModal
           onClose={() => setShowModal(false)}
-          onEnable={info => {
+          onEnable={(info) => {
             setListInfo(info);
             setEnabled(true);
             setShowModal(false);

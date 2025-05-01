@@ -12,7 +12,22 @@ const getListByUserId = async (userId) => {
   return response.data.data;
 };
 
+const updateList = async (id, { title, description }) => {
+  const response = await axios.put(`${API_URL}/${id}`, {
+    title,
+    description,
+  });
+  return response.data.data;
+};
+
+const deleteList = async (id) => {
+  const response = await axios.delete(`${API_URL}/${id}`);
+  return response.data;
+};
+
 export default {
   createFavoriteList,
-  getListByUserId
+  getListByUserId,
+  updateList,
+  deleteList
 };

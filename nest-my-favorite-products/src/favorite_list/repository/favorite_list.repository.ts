@@ -9,10 +9,4 @@ export class FavoriteListRepository extends Repository<FavoriteList> {
       super(User, dataSource.createEntityManager());
     }
     
-  async findByIdWithProducts(id: number): Promise<FavoriteList | null> {
-    return this.findOne({
-      where: { id },
-      relations: ['products'],
-    });
-  }
 }

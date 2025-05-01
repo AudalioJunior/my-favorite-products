@@ -51,7 +51,10 @@ export class FavoriteListService {
 
   async findOne(id: number): Promise<FavoriteList> {
     try {
-      const list = await this.favoriteListRepository.findByIdWithProducts(id);
+      const list = await this.favoriteListRepository.findOne({
+      where: { id },
+      relations: ['products'],
+    });
   
       if (!list) {
         throw new NotFoundException(`Lista de favoritos com ID ${id} não encontrada`);

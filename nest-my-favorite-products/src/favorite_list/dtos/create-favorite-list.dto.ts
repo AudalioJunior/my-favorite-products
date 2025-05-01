@@ -1,6 +1,4 @@
-import { Type } from 'class-transformer';
-import { IsNumber, IsString, ValidateNested } from 'class-validator';
-import { FavoriteListProductDto } from './favorite-list-product.dto';
+import { IsNumber, IsString } from 'class-validator';
 
 
 export class CreateFavoriteListDto {
