@@ -1,6 +1,6 @@
 # Projeto FavoList
 
-Este é um projeto desenvolvido utilizando o framework Nest.js com um banco de dados PostgreSQL e frontend com React. o Objetivo é favoritar produtos em uma lista.
+Este é um projeto desenvolvido utilizando o framework Nest.js com um banco de dados MySql e frontend com React. o Objetivo é favoritar produtos em uma lista.
 
 :bust_in_silhouette: **Responsável:** Audálio Junior  
 
@@ -30,7 +30,7 @@ npm install
 
 Copie o arquivo .env.example e renomeie para .env.
 
-Preencha as variáveis de ambiente necessárias no arquivo .env. Certifique-se de fornecer as credenciais corretas para o banco de dados PostgreSQL.
+Preencha as variáveis de ambiente necessárias no arquivo .env. Certifique-se de fornecer as credenciais corretas para o banco de dados MySql.
 
 ## Execução
 
@@ -38,7 +38,15 @@ Para executar o projeto, basta usar o Docker Compose. Certifique-se de estar no 
 
 docker-compose up --build
 
-Isso iniciará os contêineres Docker para o Nest.js e o PostgreSQL. Após a inicialização, sua aplicação estará disponível em http://localhost:3000.
+Isso iniciará os contêineres Docker para o Nest.js e o MySql. Após a inicialização, sua aplicação estará disponível em http://localhost:3000.
+
+Ou 
+
+Caso a exucção do docker apresente problema, o projeto pode ser iniciado de forma manual:
+
+*Back: npm run start:dev
+*Front: npm run start:dev
+*Banco: docker compose up mysql
 
 **Detalhe**: Caso já tenha subido o contêiner, só executar o _npm run start:dev_
 
